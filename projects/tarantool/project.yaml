@@ -1,5 +1,5 @@
 homepage: "https://www.tarantool.io/en/"
-language: c
+language: c++
 builds_per_day: 4
 primary_contact: "kirill.yukhin@gmail.com"
 auto_ccs:

@@ -20,13 +20,14 @@ RUN apt-get update && apt-get install -y \
 	autoconf automake libtool zlib1g-dev \
 	libreadline-dev libncurses5-dev libssl-dev \
 	libunwind-dev luajit wget ninja-build \
-	libzstd-dev libyaml-dev libcurl4-openssl-dev
+	libzstd-dev libyaml-dev libcurl4-openssl-dev \
+	libprotobuf-dev protobuf-compiler liblzma-dev libz-dev
 
 RUN wget https://github.com/unicode-org/icu/archive/refs/tags/cldr/2021-08-25.tar.gz && \
     tar xzvf ./2021-08-25.tar.gz && \
     mv ./icu-cldr-2021-08-25/icu4c $SRC/icu
 
-RUN git clone https://github.com/tarantool/tarantool
-WORKDIR tarantool
-RUN git submodule update --init --recursive
+RUN git clone --depth 5000 -j4 --recursive https://github.com/tarantool/tarantool
+WORKDIR $SRC/tarantool
+# RUN git submodule update --init --recursive
 COPY build.sh $SRC/
